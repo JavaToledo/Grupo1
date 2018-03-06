@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_codFactura}" for="codFactura" />
+                    <h:inputText id="codFactura" value="#{detalleController.selected.codFactura}" title="#{bundle.EditDetalleTitle_codFactura}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_codFactura}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_codAlbaran}" for="codAlbaran" />
+                    <h:inputText id="codAlbaran" value="#{detalleController.selected.codAlbaran}" title="#{bundle.EditDetalleTitle_codAlbaran}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_codAlbaran}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_concepto}" for="concepto" />
+                    <h:inputText id="concepto" value="#{detalleController.selected.concepto}" title="#{bundle.EditDetalleTitle_concepto}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_concepto}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{detalleController.selected.cantidad}" title="#{bundle.EditDetalleTitle_cantidad}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_importeUnitario}" for="importeUnitario" />
+                    <h:inputText id="importeUnitario" value="#{detalleController.selected.importeUnitario}" title="#{bundle.EditDetalleTitle_importeUnitario}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_importeUnitario}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_codIva}" for="codIva" />
+                    <h:inputText id="codIva" value="#{detalleController.selected.codIva}" title="#{bundle.EditDetalleTitle_codIva}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_codIva}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_descuento}" for="descuento" />
+                    <h:inputText id="descuento" value="#{detalleController.selected.descuento}" title="#{bundle.EditDetalleTitle_descuento}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_descuento}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{detalleController.selected.estado}" title="#{bundle.EditDetalleTitle_estado}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_numdetalle}" for="numdetalle" />
+                    <h:inputText id="numdetalle" value="#{detalleController.selected.numdetalle}" title="#{bundle.EditDetalleTitle_numdetalle}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_numdetalle}"/>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_albaranCodAlbaran}" for="albaranCodAlbaran" />
+                    <h:selectOneMenu id="albaranCodAlbaran" value="#{detalleController.selected.albaranCodAlbaran}" title="#{bundle.EditDetalleTitle_albaranCodAlbaran}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_albaranCodAlbaran}">
+                        <f:selectItems value="#{albaranController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetalleLabel_facturaCodFactura}" for="facturaCodFactura" />
+                    <h:selectOneMenu id="facturaCodFactura" value="#{detalleController.selected.facturaCodFactura}" title="#{bundle.EditDetalleTitle_facturaCodFactura}" required="true" requiredMessage="#{bundle.EditDetalleRequiredMessage_facturaCodFactura}">
+                        <f:selectItems value="#{facturaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detalleController.update}" value="#{bundle.EditDetalleSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDetalleViewLink}"/>
+                <br />
+                <h:commandLink action="#{detalleController.prepareList}" value="#{bundle.EditDetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDetalleIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

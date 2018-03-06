@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePresupuestoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePresupuestoLabel_codPresupuesto}" for="codPresupuesto" />
+                    <h:inputText id="codPresupuesto" value="#{presupuestoController.selected.codPresupuesto}" title="#{bundle.CreatePresupuestoTitle_codPresupuesto}" required="true" requiredMessage="#{bundle.CreatePresupuestoRequiredMessage_codPresupuesto}"/>
+                    <h:outputLabel value="#{bundle.CreatePresupuestoLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{presupuestoController.selected.fecha}" title="#{bundle.CreatePresupuestoTitle_fecha}" required="true" requiredMessage="#{bundle.CreatePresupuestoRequiredMessage_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePresupuestoLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{presupuestoController.selected.estado}" title="#{bundle.CreatePresupuestoTitle_estado}" required="true" requiredMessage="#{bundle.CreatePresupuestoRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreatePresupuestoLabel_codCliente}" for="codCliente" />
+                    <h:selectOneMenu id="codCliente" value="#{presupuestoController.selected.codCliente}" title="#{bundle.CreatePresupuestoTitle_codCliente}" required="true" requiredMessage="#{bundle.CreatePresupuestoRequiredMessage_codCliente}">
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePresupuestoLabel_codFactura}" for="codFactura" />
+                    <h:selectOneMenu id="codFactura" value="#{presupuestoController.selected.codFactura}" title="#{bundle.CreatePresupuestoTitle_codFactura}" >
+                        <f:selectItems value="#{facturaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePresupuestoLabel_presupuesto}" for="presupuesto" />
+                    <h:selectOneMenu id="presupuesto" value="#{presupuestoController.selected.presupuesto}" title="#{bundle.CreatePresupuestoTitle_presupuesto}" >
+                        <f:selectItems value="#{presupuestoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePresupuestoLabel_presupuesto1}" for="presupuesto1" />
+                    <h:selectOneMenu id="presupuesto1" value="#{presupuestoController.selected.presupuesto1}" title="#{bundle.CreatePresupuestoTitle_presupuesto1}" required="true" requiredMessage="#{bundle.CreatePresupuestoRequiredMessage_presupuesto1}">
+                        <f:selectItems value="#{presupuestoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{presupuestoController.create}" value="#{bundle.CreatePresupuestoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{presupuestoController.prepareList}" value="#{bundle.CreatePresupuestoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePresupuestoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

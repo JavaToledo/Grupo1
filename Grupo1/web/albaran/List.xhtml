@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAlbaranTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAlbaranEmpty}" rendered="#{albaranController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{albaranController.items.rowCount > 0}">
+                    <h:outputText value="#{albaranController.pagination.pageFirstItem + 1}..#{albaranController.pagination.pageLastItem + 1}/#{albaranController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{albaranController.previous}" value="#{bundle.Previous} #{albaranController.pagination.pageSize}" rendered="#{albaranController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{albaranController.next}" value="#{bundle.Next} #{albaranController.pagination.pageSize}" rendered="#{albaranController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{albaranController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbaranTitle_codAlbaran}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codAlbaran}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbaranTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbaranTitle_codFactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codFactura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbaranTitle_bloqueado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bloqueado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbaranTitle_codCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{albaranController.prepareView}" value="#{bundle.ListAlbaranViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{albaranController.prepareEdit}" value="#{bundle.ListAlbaranEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{albaranController.destroy}" value="#{bundle.ListAlbaranDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{albaranController.prepareCreate}" value="#{bundle.ListAlbaranCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAlbaranIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListConceptosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListConceptosEmpty}" rendered="#{conceptosController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{conceptosController.items.rowCount > 0}">
+                    <h:outputText value="#{conceptosController.pagination.pageFirstItem + 1}..#{conceptosController.pagination.pageLastItem + 1}/#{conceptosController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{conceptosController.previous}" value="#{bundle.Previous} #{conceptosController.pagination.pageSize}" rendered="#{conceptosController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{conceptosController.next}" value="#{bundle.Next} #{conceptosController.pagination.pageSize}" rendered="#{conceptosController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{conceptosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListConceptosTitle_codConcepto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codConcepto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListConceptosTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListConceptosTitle_importe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.importe}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListConceptosTitle_descuento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descuento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListConceptosTitle_activado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activado}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListConceptosTitle_codIva}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codIva}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{conceptosController.prepareView}" value="#{bundle.ListConceptosViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{conceptosController.prepareEdit}" value="#{bundle.ListConceptosEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{conceptosController.destroy}" value="#{bundle.ListConceptosDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{conceptosController.prepareCreate}" value="#{bundle.ListConceptosCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListConceptosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

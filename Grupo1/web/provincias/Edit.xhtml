@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProvinciasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProvinciasLabel_codProvincia}" for="codProvincia" />
+                    <h:inputText id="codProvincia" value="#{provinciasController.selected.codProvincia}" title="#{bundle.EditProvinciasTitle_codProvincia}" required="true" requiredMessage="#{bundle.EditProvinciasRequiredMessage_codProvincia}"/>
+                    <h:outputLabel value="#{bundle.EditProvinciasLabel_provincia}" for="provincia" />
+                    <h:inputText id="provincia" value="#{provinciasController.selected.provincia}" title="#{bundle.EditProvinciasTitle_provincia}" required="true" requiredMessage="#{bundle.EditProvinciasRequiredMessage_provincia}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{provinciasController.update}" value="#{bundle.EditProvinciasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProvinciasViewLink}"/>
+                <br />
+                <h:commandLink action="#{provinciasController.prepareList}" value="#{bundle.EditProvinciasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProvinciasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
