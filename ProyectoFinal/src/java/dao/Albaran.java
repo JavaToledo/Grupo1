@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Albaran.findByCodAlbaran", query = "SELECT a FROM Albaran a WHERE a.codAlbaran = :codAlbaran")
     , @NamedQuery(name = "Albaran.findByFecha", query = "SELECT a FROM Albaran a WHERE a.fecha = :fecha")
     , @NamedQuery(name = "Albaran.findByCodFactura", query = "SELECT a FROM Albaran a WHERE a.codFactura = :codFactura")
-    , @NamedQuery(name = "Albaran.findByBloqueado", query = "SELECT a FROM Albaran a WHERE a.bloqueado = :bloqueado")})
+    , @NamedQuery(name = "Albaran.findByBloqueado", query = "SELECT a FROM Albaran a WHERE a.bloqueado = :bloqueado")
+    ,@NamedQuery(name = "Albaran.findByCliente", query = "SELECT a FROM Albaran a WHERE a.codCliente = :codCliente")})
 public class Albaran implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -146,5 +147,5 @@ public class Albaran implements Serializable {
     public String toString() {
         return "dao.Albaran[ codAlbaran=" + codAlbaran + " ]";
     }
-    
+
 }
