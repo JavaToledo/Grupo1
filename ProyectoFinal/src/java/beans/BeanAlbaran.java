@@ -10,6 +10,7 @@ import dao.Detalle;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import javax.inject.Named;
 
@@ -18,21 +19,23 @@ import javax.inject.Named;
  * @author Beholder Systems
  */
 @Named
-public class Albaran implements Serializable{
+public class BeanAlbaran implements Serializable {
+
     private String codAlbaran;
     private Integer codCliente;
     private Date Fecha;
     private Integer codFactura;
     private boolean bloqueo;
-    private List <Detalle> listadoDetalle;
-    private List <Albaran> listadoAlbaran;
+    private List<Detalle> listadoDetalle;
+    private List<BeanAlbaran> listadoAlbaran;
     private List<Cliente> listadoCliente;
     private ManejadorAlbaran mn;
 
-    public Albaran() {
+    public BeanAlbaran() {
+
     }
 
-    public Albaran(String codAlbaran, Integer codCliente, Date Fecha, Integer codFactura, boolean bloqueo, List<Albaran> listadoAlbaran, List<Cliente> listadoCliente, ManejadorAlbaran mn) {
+    public BeanAlbaran(String codAlbaran, Integer codCliente, Date Fecha, Integer codFactura, boolean bloqueo, List<BeanAlbaran> listadoAlbaran, List<Cliente> listadoCliente, ManejadorAlbaran mn) {
         this.codAlbaran = codAlbaran;
         this.codCliente = codCliente;
         this.Fecha = Fecha;
@@ -75,7 +78,7 @@ public class Albaran implements Serializable{
         this.codFactura = codFactura;
     }
 
-    public boolean isBloqueo() {
+    public boolean getBloqueo() {
         return bloqueo;
     }
 
@@ -83,11 +86,11 @@ public class Albaran implements Serializable{
         this.bloqueo = bloqueo;
     }
 
-    public List <Albaran> getListadoAlbaran() {
+    public List<BeanAlbaran> getListadoAlbaran() {
         return listadoAlbaran;
     }
 
-    public void setListadoAlbaran(List <Albaran> listadoAlbaran) {
+    public void setListadoAlbaran(List<BeanAlbaran> listadoAlbaran) {
         this.listadoAlbaran = listadoAlbaran;
     }
 
@@ -108,13 +111,21 @@ public class Albaran implements Serializable{
     }
 
     public List<Detalle> getListadoDetalle() {
+
         return listadoDetalle;
     }
 
     public void setListadoDetalle(List<Detalle> listadoDetalle) {
         this.listadoDetalle = listadoDetalle;
+            }
+
+    public void altaAlbaran() {
+        mn.altaAlbaran(this);
+        mn.guardarDetalles(listadoDetalle);
     }
 
-
+    public void modificarAlbaran() {
+        mn.modificarAlbaran(this);
+    }
     
 }
