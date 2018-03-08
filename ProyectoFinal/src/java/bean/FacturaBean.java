@@ -34,8 +34,6 @@ public class FacturaBean implements Serializable{
     +boolean pagarFactura();
     +List buscarDetalle();
     +boolean crearDetalle();
-    +boolean borrarDetalle();
-    +boolean modificarDetalle();
     */
 
     public String getCodFactura() {
