@@ -1,12 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <link href="estilosForm.css" rel="stylesheet"/>
+    
     <h:head>
-        <title>Facelet Title</title>
+        <title>Login</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <div class="cuerpoUsuario">
+        <h2>Introduce login </h2>
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Envia" />
+        
+        <h:form id="formularioUsuario">
+
+
+                        
+                                <label>Introduce Usuario</label><br/>
+                                
+                                <input type="txt" id="usuario"/><br/>
+                           
+                                <label>Introduce password</label><br/>
+                               
+                                <input type="password" id="password"/><br/>
+                          
+                        
+                        <p:commandButton value="Enviar" id="envioUsuario"  actionListener="#{usuario.validar}" styleClass="ui-priority-primary" />
+
+                    </h:form>
+        </div>
     </h:body>
 </html>
 

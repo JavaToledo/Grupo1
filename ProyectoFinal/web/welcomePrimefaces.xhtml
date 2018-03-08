@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <link href="estilos.css" rel="stylesheet"/>
+
+    <script src="script.js"></script>
+
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Java 2018</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+
+
+                    <header class="header black-bg">
+                        <!--<h:graphicImage value="img/logo.png"  styleClass="logo2"/>-->
+                        <!--logo start-->
+                        <h:link outcome="welcomePrimefaces" value="Java AnPiCarAlEva 2018" ></h:link>
+
+                        <!--logo end-->
+                        <!--<ui:include src="usuario.xhtml"/>
+                        <h5  id="usuario"><%=usuario%></h5>-->
+                        <p:commandButton value="Salir" id="salir"  actionListener="#{usuario.salir}" styleClass="ui-priority-primary" />
+
+
+                    </header>
+                    <!--header end-->
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Java Toledo 2018 
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Ocultar" collapsible="true" style="background-color: grey; color: white;">
+                    <p:menu style="background-color: grey; color: white;">
+                        <p:submenu label="Opciones">
+                            <p:menuitem value="Cliente Nuevo" url="clientenuevo.xhtml"  class=""/>
+                            <p:menuitem value="Cliente Modificar" url="clientemodificar.xhtml"  class=""/>
+                            <p:menuitem value="Presupuesto Nuevo" url="presupuestonuevo.xhtml" />
+                            <p:menuitem value="Presupuesto Modificar" url="presupuestomodificar.xhtml" />
+                            <p:menuitem value="Factura Nueva" url="facturanueva.xhtml" />
+                            <p:menuitem value="Factura Modificar" url="facturamodificar.xhtml" />
+                            <p:menuitem value="Concepto Nuevo" url="conceptonuevo.xhtml" />
+                            <p:menuitem value="Concepto Modificar" url="conceptomodificar.xhtml" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" style="background-color: #F5DA81">                    
+
+                    <h:graphicImage value="img/portada.jpg"  styleClass="principal"/>
+
+
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

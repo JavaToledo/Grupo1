@@ -35,7 +35,7 @@ public class BeanAlbaran implements Serializable {
 
     }
 
-    public BeanAlbaran(String codAlbaran, Integer codCliente, Date Fecha, Integer codFactura, boolean bloqueo, List<BeanAlbaran> listadoAlbaran, List<Cliente> listadoCliente, ManejadorAlbaran mn) {
+    public BeanAlbaran(String codAlbaran, Integer codCliente, Date Fecha, Integer codFactura, boolean bloqueo, List<BeanAlbaran> listadoAlbaran, List<Cliente> listadoCliente) {
         this.codAlbaran = codAlbaran;
         this.codCliente = codCliente;
         this.Fecha = Fecha;
@@ -43,8 +43,7 @@ public class BeanAlbaran implements Serializable {
         this.bloqueo = bloqueo;
         this.listadoAlbaran = listadoAlbaran;
         this.listadoCliente = listadoCliente;
-        this.mn = mn;
-    }
+          }
 
     public String getCodAlbaran() {
         return codAlbaran;
@@ -119,13 +118,13 @@ public class BeanAlbaran implements Serializable {
         this.listadoDetalle = listadoDetalle;
             }
 
-    public void altaAlbaran() {
+    public void altaAlbaran(List listadoDetalle) {
         mn.altaAlbaran(this);
         mn.guardarDetalles(listadoDetalle);
     }
 
-    public void modificarAlbaran() {
-        mn.modificarAlbaran(this);
+    public void modificarAlbaran(String codigoAlbaran) {
+        mn.modificarAlbaran(codigoAlbaran,this);
     }
     
 }

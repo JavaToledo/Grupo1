@@ -5,7 +5,7 @@
  */
 package beans;
 
-import dao.Cliente;
+import dao.Albaran;
 import dao.Detalle;
 import dao.Factura;
 import java.util.List;
@@ -18,17 +18,17 @@ import javax.persistence.Persistence;
  * @author Beholder Systems
  */
 class ManejadorAlbaran {
-
+    
     private EntityManager em;
     private EntityManagerFactory emf;
-
+    
     public ManejadorAlbaran() {
         emf = Persistence
                 .createEntityManagerFactory("ProyectoFinalPU");
         em = emf.createEntityManager();
     }
-
-    public int altaAlbaran(BeanAlbaran a) {
+    
+    public void altaAlbaran(BeanAlbaran a) {
         dao.Albaran al;
         al = new dao.Albaran();
         al.setCodAlbaran(a.getCodAlbaran());
@@ -39,50 +39,43 @@ class ManejadorAlbaran {
         em.getTransaction().begin();
         em.persist(al);
         em.getTransaction().commit();
-        return 0;
-    }
+           }
 
-    public int modificarAlbaran(BeanAlbaran a) {
+ public void modificarAlbaran(String codAlbaran, BeanAlbaran a) {
         em.getTransaction().begin();
         dao.Albaran albaranOld;
-        albaranOld = em.find(dao.Albaran.class, a.getCodAlbaran());
+        albaranOld = em.find(dao.Albaran.class, "codAlbaran");
+        albaranOld.setCodCliente(em.find(dao.Cliente.class, a.getCodCliente()));
         albaranOld.setFecha(a.getFecha());
+        albaranOld.setCodFactura(a.getCodFactura());
         albaranOld.setDetalleList(a.getListadoDetalle());
+        albaranOld.setBloqueado(Boolean.FALSE);
         em.getTransaction().commit();
-        return 0;
-    }
 
-    public List listadoAlbaranes() {
+    }
+   public List listadoAlbaranes() {
         List listadoAlbaranes = em.createNamedQuery("Albaran.findAll").getResultList();
         return listadoAlbaranes;
     }
 
-    public List buscarAlbaran(String codAlbaran) {
-        List listadoAlbaranes = em.createNamedQuery("Albaran.findByCodAlbaran").getResultList();
-        return listadoAlbaranes;
+    public void guardarDetalle(Detalle d) {
+        em.getTransaction().begin();
+        em.persist(d);
+        em.getTransaction().commit();
+        
     }
+
+    public void guardarDetalles(List listadoDetalles) {
+        for (Object detalle : listadoDetalles) {
+            guardarDetalle((Detalle) detalle);
+        }
+      
+    }
+   
 
     public boolean bloquearAlbaran(BeanAlbaran a) {
         em.find(dao.Albaran.class, a.getCodAlbaran()).setBloqueado(Boolean.TRUE);
         return true;
     }
-
-    public List listarDetalle(Detalle d) {
-        List listadoDetalle = em.createNamedQuery("Detalle.findAll").getResultList();
-        return listadoDetalle;
-    }
-
-    public int guardarDetalle(Detalle d) {
-        em.getTransaction().begin();
-        em.persist(d);
-        em.getTransaction().commit();
-        return 0;
-    }
-
-    public int guardarDetalles(List listadoDetalles) {
-        for (Object detalle : listadoDetalles) {
-            guardarDetalle((Detalle) detalle);
-        }
-        return 0;
-    }
+  
 }
