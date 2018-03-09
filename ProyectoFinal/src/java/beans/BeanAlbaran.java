@@ -119,7 +119,9 @@ public class BeanAlbaran implements Serializable {
     public void setListadoDetalle(List<Detalle> listadoDetalle) {
         this.listadoDetalle = listadoDetalle;
     }
-
+public void buscarAlbaran(String codAlbaran){
+    mn.buscarAlbaran("codAlbaran");
+}
     public void altaAlbaran(List listadoDetalle) {
         mn.altaAlbaran(this);
         mn.guardarDetalles(listadoDetalle);

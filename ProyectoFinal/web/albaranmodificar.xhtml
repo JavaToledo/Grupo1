@@ -14,7 +14,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Java 2018 Presupuesto</title>
+                <title>Java 2018 Albarán</title>
             </f:facet>
         </h:head>
 
@@ -59,11 +59,11 @@
 
                 <p:layoutUnit position="center" style="background-color: #F5DA81">                    
 
-                    <p:panel id="panelBusqueda" header="Presupuestos" style="margin-bottom:20px">
+                    <p:panel id="panelBusqueda" header="Albaranes" style="margin-bottom:20px">
 
 
                         <h:form>
-                            <p:fieldset legend="Búsqueda por presupuestos" styleClass="legenda">
+                            <p:fieldset legend="Búsqueda por albarán" styleClass="legenda">
 
                                 <h:panelGrid columns="4" cellpadding="5">
                                     <h:outputLabel for="busqueda" value="Valor a buscar:" />
@@ -80,7 +80,7 @@
 
                                 </h:panelGrid>
 
-                                <h:commandButton value="Buscar" id="buscar"  actionListener="#{bean.buscar}" styleClass="ui-priority-primary"/>
+                                <h:commandButton value="Buscar" id="buscar"  actionListener="#{beanAlbaran.buscarAlbaran}" styleClass="ui-priority-primary"/>
 
                             </p:fieldset>
                         </h:form>
@@ -97,12 +97,12 @@
 
 
                                 <p:column headerText="Modificar">
-                                    <h:commandButton value="Modificar" id="modificar"  actionListener="#{bean.modificar}" styleClass="ui-priority-primary"/>
+                                    <h:commandButton value="Modificar" id="modificar"  actionListener="#{beanAlbaran.modificarAlbaran}" styleClass="ui-priority-primary"/>
                                 </p:column>
 
                                 <p:column headerText="Borrar">
                                    
-                                    <h:commandButton value="Borrar" id="borrar"  actionListener="#{bean.borrar}" styleClass="ui-priority-primary"/>
+                                    <h:commandButton value="Borrar" id="borrar"  actionListener="#{beanAlbaran.borrarAlbaran}" styleClass="ui-priority-primary"/>
                                 </p:column>
                             </p:dataTable>                    
 
