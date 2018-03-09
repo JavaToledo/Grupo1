@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <link href="estilos.css" rel="stylesheet"/>
+
+    <script src="script.js"></script>
+
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Java 2018 Presupuesto</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    
+
+                   <header class="header black-bg">
+                        <!--<h:graphicImage value="img/logo.png"  styleClass="logo2"/>-->
+                        <!--logo start-->
+                        <h:link outcome="welcomePrimefaces" value="Java AnPiCarAlEva 2018" ></h:link>
+                         <!--<ui:include src="usuario.xhtml"/>
+                        <h5  id="usuario"><%=usuario%></h5>-->
+                        <p:commandButton value="Salir" id="salir"  actionListener="#{usuario.salir}" styleClass="ui-priority-primary" />
+                     </header>
+                    <!--header end-->
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Java Toledo 2018 
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Ocultar" collapsible="true" style="background-color: grey; color: white;">
+                    <p:menu style="background-color: grey; color: white;">
+                        <p:submenu label="Opciones">
+                            <p:menuitem value="Cliente Nuevo" url="clientenuevo.xhtml"  class=""/>
+                            <p:menuitem value="Cliente Modificar" url="clientemodificar.xhtml"  class=""/>
+                            <p:menuitem value="Presupuesto Nuevo" url="presupuestonuevo.xhtml" />
+                            <p:menuitem value="Presupuesto Modificar" url="presupuestomodificar.xhtml" />
+                            <p:menuitem value="Factura Nueva" url="facturanueva.xhtml" />
+                            <p:menuitem value="Factura Modificar" url="facturamodificar.xhtml" />
+                            <p:menuitem value="Concepto Nuevo" url="conceptonuevo.xhtml" />
+                            <p:menuitem value="Concepto Modificar" url="conceptomodificar.xhtml" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" style="background-color: #F5DA81">                    
+
+                    <p:panel id="panelBusqueda" header="Presupuestos" style="margin-bottom:20px">
+
+
+                        <h:form>
+                            <p:fieldset legend="Búsqueda por presupuestos" styleClass="legenda">
+
+                                <h:panelGrid columns="4" cellpadding="5">
+                                    <h:outputLabel for="busqueda" value="Valor a buscar:" />
+                                    <p:inputText id="busqueda" placeholder="Buscar por codigo de presupuesto;..." required="true"/>
+                                    <h:outputLabel for="" value="" />
+                                    <h:outputLabel for="" value="" />
+
+                                    <h:outputLabel for="fechaInicio" value="Fecha inicio:" />
+                                    <p:inputText type="date" id="fechaInicio" />
+                                    <h:outputLabel for="fechaFin" value="Fecha fin:" />
+                                    <p:inputText type="date" id="fechaFin" />
+
+
+                                </h:panelGrid>
+
+                                <h:commandButton value="Buscar" id="buscar"  actionListener="#{BeanPresupuesto.buscar()}" styleClass="ui-priority-primary"/>
+
+                            </p:fieldset>
+                        </h:form>
+
+                    </p:panel>
+
+                    <p:panel id="panelTabla" header="Resultados" style="margin-bottom:20px">
+                        <h:panelGrid columns="2" cellpadding="10">
+
+                            <p:dataTable var="car" value="#{dtBasicView.cars}">
+                                <p:column headerText="Presupuesto" styleClass="tablaPresupuesto" style="width: 60%">
+                                    <h:outputText value="#{car.id}" />
+                                </p:column>
+
+
+                                <p:column headerText="Modificar">
+                                    <h:commandButton value="Modificar" id="modificar"  actionListener="#{BeanPresupuesto.modificar()}" styleClass="ui-priority-primary"/>
+                                </p:column>
+
+                                <p:column headerText="Borrar">
+                                   
+                                    <h:commandButton value="Borrar" id="borrar"  actionListener="#{BeanPresupuesto.borrar()}" styleClass="ui-priority-primary"/>
+                                </p:column>
+                            </p:dataTable>                    
+
+                        </h:panelGrid>
+                    </p:panel>
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
