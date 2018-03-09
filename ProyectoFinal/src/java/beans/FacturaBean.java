@@ -16,6 +16,7 @@ import javax.inject.Named;
  */
 @Named(value="factura")
 @SessionScoped
+/* Factura Bean*/
 public class FacturaBean implements Serializable{
     
     String codFactura, observaciones;
