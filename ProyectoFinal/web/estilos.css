@@ -9,8 +9,12 @@ and open the template in the editor.
 */
 
 
-body{
+/*body{
     background-color: midnightblue;
+   
+}*/
+#panelBusqueda{
+    border: 4px solid midnightblue;
 }
 #salir{
     border: 1px solid orange;

@@ -1,12 +1,139 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-       Cliente nuevo
-    </h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <link href="estilos.css" rel="stylesheet"/>
+
+    <script src="script.js"></script>
+
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Java 2018 Cliente</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+
+
+                    <header class="header black-bg">
+                        <!--<h:graphicImage value="img/logo.png"  styleClass="logo2"/>-->
+                        <!--logo start-->
+                        <h:link outcome="welcomePrimefaces" value="Java AnPiCarAlEva 2018" ></h:link>
+                        <!--<ui:include src="usuario.xhtml"/>
+                       <h5  id="usuario"><%=usuario%></h5>-->
+                        <p:commandButton value="Salir" id="salir"  actionListener="#{usuario.salir}" styleClass="ui-priority-primary" />
+                    </header>
+                    <!--header end-->
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Java Toledo 2018 
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Ocultar" collapsible="true" style="background-color: grey; color: white;">
+                    <p:menu style="background-color: grey; color: white;">
+                        <p:submenu label="Opciones">
+                            <p:menuitem value="Cliente Nuevo" url="clientenuevo.xhtml"  class=""/>
+                            <p:menuitem value="Cliente Modificar" url="clientemodificar.xhtml"  class=""/>
+                            <p:menuitem value="Presupuesto Nuevo" url="presupuestonuevo.xhtml" />
+                            <p:menuitem value="Presupuesto Modificar" url="presupuestomodificar.xhtml" />
+                            <p:menuitem value="Factura Nueva" url="facturanueva.xhtml" />
+                            <p:menuitem value="Factura Modificar" url="facturamodificar.xhtml" />
+                            <p:menuitem value="Concepto Nuevo" url="conceptonuevo.xhtml" />
+                            <p:menuitem value="Concepto Modificar" url="conceptomodificar.xhtml" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" style="background-color: #F5DA81">                    
+
+                    <p:panel id="panelBusqueda" header="Clientes" style="margin-bottom:20px">
+
+
+                        <h:form>
+                            <p:fieldset legend="Nuevo Cliente" styleClass="legenda">
+
+                                <h:panelGrid columns="4" cellpadding="12">
+                                    <h:outputLabel for="nombre" value="Nombre:" />
+                                    <p:inputText id="nombre" requiredMessage="Introduce datos" required="true"/>
+
+                                    <h:outputLabel for="apellido1" value="Primer Apellido:" />
+                                    <p:inputText id="apellido1" placeholder="Añadir primer apellido" required="false"/>
+
+                                    <h:outputLabel for="apellido2" value="Segundo Apellido" />
+                                    <p:inputText id="apellido2" placeholder="Añadir segundo apellido" required="false"/>
+
+                                    <h:outputLabel for="direccion" value="Dirección:" />
+                                    <p:inputText id="direccion" placeholder="Añadir dirección*" required="true"/>
+
+                                    <p:outputLabel for="codigopostal" value="Código Postal" />
+                                    <p:inputMask id="codigopostal" value="codigo postal" mask="99999"/>
+
+
+                                    <h:outputLabel for="municipio" value="Municipio:" />
+                                    <p:inputText id="municipio" placeholder="Añadir municipio*" required="true"/>
+
+                                    <h:outputLabel for="provincia" value="Provincia:" />
+                                    <h:selectOneMenu value = "#{userData.data}"> 
+                                        <f:selectItem itemValue = "1" itemLabel = "Aqui va las provincias" /> 
+                                        <f:selectItem itemValue = "2" itemLabel = "Item 2" /> 
+                                        <f:ajax listener="#{bean.listener}" render="result"/>
+                                    </h:selectOneMenu> 
+
+
+                                    <p:outputLabel for="telefono" value="Teléfono"/>
+                                    <p:inputMask id="telefono" value="telefono" mask="999999999" required="true"/>
+
+                                    <p:outputLabel for="email" value="Email" />
+                                    <p:inputText type="email" id="email" placeholder="Añadir email*" required="true"/> 
+
+                                    <h:outputLabel for="nif" value="NIF:" />
+                                    <p:inputText id="nif" placeholder="Añadir NIF*" required="true"/>
+
+                                    <h:outputLabel for="estado" value="Estado:" />
+                                    <h:selectOneRadio value="#{user.favColor1}">
+                                        <f:selectItem itemValue="activado" itemLabel="Activado" />
+                                        <f:selectItem itemValue="desactivado" itemLabel="Desactivado" />
+                                     </h:selectOneRadio>
+                                    <h:outputLabel for="" value="" />
+                                    <h:outputLabel for="" value="" />
+
+                                    <h:commandButton value="Grabar" id="grabar"  actionListener="#{bean.grabar}" styleClass="ui-priority-primary"/>
+                                    <h:commandButton value="Imprimir" id="imprimir"  actionListener="#{bean.imprimir}" styleClass="ui-priority-primary"/>
+
+                                </h:panelGrid>
+
+
+                            </p:fieldset>
+                        </h:form>
+
+                    </p:panel>
+
+                    <p:panel id="panelresultado" header="Cliente guardado" style="margin-bottom:20px">
+                        <!--devuelve el list que creamos-->
+                    </p:panel>
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
 </html>
+
+
 
