@@ -6,7 +6,12 @@
 package beans;
 
 import dao.Cliente;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,6 +24,7 @@ import javax.persistence.Query;
 public class ManejadorFactura {
     private EntityManager em;
     private EntityManagerFactory emf;
+    private Connection conexion;
     
     /*
     METODOS
@@ -34,9 +40,31 @@ public class ManejadorFactura {
     +
     */
     
+    /*
+    Class.forName("com.mysql.jdbc.Driver");
+    String url="jdbc:mysql://localhost:3306/annexfactura?zeroDateTimeBehavior=convertToNull";
+    String user="root";
+    String password="aula05";
+    */
     public ManejadorFactura(){
         emf=Persistence.createEntityManagerFactory("proyectoFinal");
         em=emf.createEntityManager();
+        
+    }
+    
+    public Connection conectar(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String url="jdbc:mysql://localhost:3306/annexfactura?zeroDateTimeBehavior=convertToNull";
+            String user="root";
+            String password="aula05";
+            conexion=DriverManager.getConnection(url,user,password);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return conexion;
     }
     
     public List listarFacturas(){
