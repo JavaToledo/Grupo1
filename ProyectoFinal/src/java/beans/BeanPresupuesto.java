@@ -95,13 +95,17 @@ public class BeanPresupuesto implements Serializable{
     public void setListadoClientes(List <Cliente> listadoClientes) {
         this.listadoClientes = listadoClientes;
     }
-   public void altaPresupuesto() {
-        mn.altaPresupuesto(this);
-        
+   public void guardarPresupuesto() {
+        mn.guardarPresupuesto(this);       
     }
-
+   
     public void modificarPresupuesto(String codAlbaran) {
         mn.modificarPresupuesto(codAlbaran,this);
     } 
-    
+   public void borrarPresupuesto(String codPresupuesto) {
+   mn.borrarPresupuesto("codPresupuesto");
+   }
+   public void buscarPresupuesto(String codPresupuesto){
+   mn.buscarPresupuesto("codPresupuesto");
+   }
 }

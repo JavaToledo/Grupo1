@@ -5,9 +5,12 @@
  */
 package beans;
 
+import dao.Presupuesto;
+import java.sql.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -24,7 +27,7 @@ public class ManejadorPresupuesto {
         em = emf.createEntityManager();
     }
 
-    public void altaPresupuesto(BeanPresupuesto pr) {
+    public void guardarPresupuesto(BeanPresupuesto pr) {
         dao.Presupuesto p;
         p = new dao.Presupuesto();
         p.setCodPresupuesto(pr.getCodPresupuesto());
@@ -49,4 +52,18 @@ public class ManejadorPresupuesto {
         em.getTransaction().commit();
     }
 
+    void borrarPresupuesto(String codPresupuesto) {
+        dao.Presupuesto p;
+        p = em.find(dao.Presupuesto.class, "codPresupuesto");
+        em.getTransaction().begin();
+        em.remove(p);
+        em.getTransaction().commit();
+    }
+
+    public Presupuesto buscarPresupuesto(String codPresupuesto) {
+        dao.Presupuesto p;
+        p = em.find(dao.Presupuesto.class, "codPresupuesto");
+        return p;
+
+    }
 }

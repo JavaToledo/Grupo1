@@ -18,16 +18,15 @@ import javax.persistence.Persistence;
  * @author Beholder Systems
  */
 class ManejadorAlbaran {
-    
     private EntityManager em;
     private EntityManagerFactory emf;
-    
+
     public ManejadorAlbaran() {
         emf = Persistence
                 .createEntityManagerFactory("ProyectoFinalPU");
         em = emf.createEntityManager();
     }
-    
+
     public void altaAlbaran(BeanAlbaran a) {
         dao.Albaran al;
         al = new dao.Albaran();
@@ -39,9 +38,9 @@ class ManejadorAlbaran {
         em.getTransaction().begin();
         em.persist(al);
         em.getTransaction().commit();
-           }
+    }
 
- public void modificarAlbaran(String codAlbaran, BeanAlbaran a) {
+    public void modificarAlbaran(String codAlbaran, BeanAlbaran a) {
         em.getTransaction().begin();
         dao.Albaran albaranOld;
         albaranOld = em.find(dao.Albaran.class, "codAlbaran");
@@ -53,7 +52,8 @@ class ManejadorAlbaran {
         em.getTransaction().commit();
 
     }
-   public List listadoAlbaranes() {
+
+    public List listadoAlbaranes() {
         List listadoAlbaranes = em.createNamedQuery("Albaran.findAll").getResultList();
         return listadoAlbaranes;
     }
@@ -62,20 +62,27 @@ class ManejadorAlbaran {
         em.getTransaction().begin();
         em.persist(d);
         em.getTransaction().commit();
-        
+
     }
 
     public void guardarDetalles(List listadoDetalles) {
         for (Object detalle : listadoDetalles) {
             guardarDetalle((Detalle) detalle);
         }
-      
-    }
-   
 
-    public boolean bloquearAlbaran(BeanAlbaran a) {
-        em.find(dao.Albaran.class, a.getCodAlbaran()).setBloqueado(Boolean.TRUE);
-        return true;
     }
-  
+
+    public void bloquearAlbaran(String codigoAlbaran) {
+        em.find(dao.Albaran.class, "codidoAlbaran").setBloqueado(Boolean.TRUE);
+
+    }
+
+    public void borrarAlbaran(String codAlbaran) {
+        Albaran a = em.find(dao.Albaran.class, "codAlbaran");
+        em.getTransaction().begin();
+        em.remove(a);
+        em.getTransaction().commit();
+
+    }
+
 }

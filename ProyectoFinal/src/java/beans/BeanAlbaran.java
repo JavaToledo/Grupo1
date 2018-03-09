@@ -10,6 +10,8 @@ import dao.Detalle;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import javax.inject.Named;
@@ -43,7 +45,7 @@ public class BeanAlbaran implements Serializable {
         this.bloqueo = bloqueo;
         this.listadoAlbaran = listadoAlbaran;
         this.listadoCliente = listadoCliente;
-          }
+    }
 
     public String getCodAlbaran() {
         return codAlbaran;
@@ -116,7 +118,7 @@ public class BeanAlbaran implements Serializable {
 
     public void setListadoDetalle(List<Detalle> listadoDetalle) {
         this.listadoDetalle = listadoDetalle;
-            }
+    }
 
     public void altaAlbaran(List listadoDetalle) {
         mn.altaAlbaran(this);
@@ -124,7 +126,26 @@ public class BeanAlbaran implements Serializable {
     }
 
     public void modificarAlbaran(String codigoAlbaran) {
-        mn.modificarAlbaran(codigoAlbaran,this);
+        mn.modificarAlbaran(codigoAlbaran, this);
     }
-    
+
+    public void borrarAlbaran(String codAlbaran) {
+        mn.borrarAlbaran(codAlbaran);
+    }
+
+    public void detalleListener(AjaxBehaviorEvent e) {
+
+        dao.Detalle detalle = null;
+        detalle.setNumdetalle((Integer) ((UIInput) ((UIComponent) e.getSource()).findComponent("numDetalle")).getValue());
+        detalle.setCodAlbaran((String) ((UIInput) ((UIComponent) e.getSource()).findComponent("codAlbaran")).getValue());
+        detalle.setCodFactura((String) ((UIInput) ((UIComponent) e.getSource()).findComponent("codFactura")).getValue());
+        detalle.setConcepto((String) ((UIInput) ((UIComponent) e.getSource()).findComponent("concepto")).getValue());
+        detalle.setCantidad((Integer) ((UIInput) ((UIComponent) e.getSource()).findComponent("cantidad")).getValue());
+        detalle.setImporteUnitario((Double) ((UIInput) ((UIComponent) e.getSource()).findComponent("ImporteUnitario")).getValue());
+        detalle.setCodIva((Integer) ((UIInput) ((UIComponent) e.getSource()).findComponent("codIva")).getValue());
+        detalle.setDescuento((Integer) ((UIInput) ((UIComponent) e.getSource()).findComponent("descuento")).getValue());
+        detalle.setEstado((boolean) ((UIInput) ((UIComponent) e.getSource()).findComponent("codFactura")).getValue());
+        listadoDetalle.add(detalle);
+    }
+
 }

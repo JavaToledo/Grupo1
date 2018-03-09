@@ -1,4 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -8,17 +10,14 @@
     <link href="estilos.css" rel="stylesheet"/>
 
     <script src="script.js"></script>
-
-
     <f:view contentType="text/html">
-        <h:head>
-            <f:facet name="first">
+    <h:head>
+        <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Java 2018 Presupuesto</title>
-            </f:facet>
-        </h:head>
-
-        <h:body>
+        <title>Java 2018 Albaran</title>
+         </f:facet>
+    </h:head>
+     <h:body>
 
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
@@ -59,27 +58,25 @@
 
                 <p:layoutUnit position="center" style="background-color: #F5DA81">                    
 
-                    <p:panel id="panelBusqueda" header="Presupuestos" style="margin-bottom:20px">
+                    <p:panel id="panelBusqueda" header="Albaranes" style="margin-bottom:20px">
 
 
                         <h:form>
-                            <p:fieldset legend="Búsqueda por presupuestos" styleClass="legenda">
+                            <p:fieldset legend="Búsqueda Albaranes" styleClass="legenda">
 
                                 <h:panelGrid columns="4" cellpadding="5">
                                     <h:outputLabel for="busqueda" value="Valor a buscar:" />
-                                    <p:inputText id="busqueda" placeholder="Buscar por codigo de presupuesto;..." required="true"/>
+                                    <p:inputText id="busqueda" placeholder="Buscar por código de albarán." required="true"/>
                                     <h:outputLabel for="" value="" />
                                     <h:outputLabel for="" value="" />
 
-                                    <h:outputLabel for="fechaInicio" value="Fecha inicio:" />
-                                    <p:inputText type="date" id="fechaInicio" />
-                                    <h:outputLabel for="fechaFin" value="Fecha fin:" />
-                                    <p:inputText type="date" id="fechaFin" />
+                                    
+                               
 
 
                                 </h:panelGrid>
 
-                                <h:commandButton value="Buscar" id="buscar"  actionListener="#{BeanPresupuesto.buscar()}" styleClass="ui-priority-primary"/>
+                                <h:commandButton value="Buscar" id="buscar"  actionListener="#{bean.buscar}" styleClass="ui-priority-primary"/>
 
                             </p:fieldset>
                         </h:form>
@@ -90,18 +87,18 @@
                         <h:panelGrid columns="2" cellpadding="10">
 
                             <p:dataTable var="car" value="#{dtBasicView.cars}">
-                                <p:column headerText="Presupuesto" styleClass="tablaPresupuesto" style="width: 60%">
+                                <p:column headerText="Albaran" styleClass="tablaPresupuesto" style="width: 60%">
                                     <h:outputText value="#{car.id}" />
                                 </p:column>
 
 
                                 <p:column headerText="Modificar">
-                                    <h:commandButton value="Modificar" id="modificar"  actionListener="#{BeanPresupuesto.modificar()}" styleClass="ui-priority-primary"/>
+                                    <h:commandButton value="Modificar" id="modificar"  actionListener="#{bean.modificar}" styleClass="ui-priority-primary"/>
                                 </p:column>
 
                                 <p:column headerText="Borrar">
                                    
-                                    <h:commandButton value="Borrar" id="borrar"  actionListener="#{BeanPresupuesto.borrar()}" styleClass="ui-priority-primary"/>
+                                    <h:commandButton value="Borrar" id="borrar"  actionListener="#{bean.borrar}" styleClass="ui-priority-primary"/>
                                 </p:column>
                             </p:dataTable>                    
 
@@ -114,6 +111,6 @@
             </p:layout>
 
         </h:body>
-
-    </f:view>
+        </f:view>
 </html>
+
