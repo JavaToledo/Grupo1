@@ -79,7 +79,9 @@
 
                                 </h:panelGrid>
 
-                                <h:commandButton value="Buscar" id="buscar"  actionListener="#{BeanPresupuesto.buscar()}" styleClass="ui-priority-primary"/>
+                                <h:commandButton value="Buscar" id="buscar"  
+                                                 styleClass="ui-priority-primary"/>
+                                <f:ajax listener="#{BeanPresupuesto.presupuestoListener}" render="car"/>
 
                             </p:fieldset>
                         </h:form>
