@@ -85,4 +85,9 @@ class ManejadorAlbaran {
 
     }
 
+    public List buscarAlbaran(String codAlbaran) {
+        List listadoAlbaranes = em.createNamedQuery("Albaran.findByCodAlbaran").getResultList();
+        return listadoAlbaranes;
+    }
+
 }
