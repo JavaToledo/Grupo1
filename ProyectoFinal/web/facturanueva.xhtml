@@ -66,13 +66,13 @@
                             <p:fieldset legend="Nueva Factura" styleClass="legenda">
 
                                 <h:panelGrid columns="2" cellpadding="1">
-                                    <h:outputLabel for="codigoFactura" value="Código Factura" />
-                                    <p:inputText id="codigoFactura" required="true"/>
+                                    <h:outputLabel for="codigoFactura" value="Codigo Factura" />
+                                    <p:inputText id="codigoFactura" required="true" value="#{factura.codFactura}"/>
 
-                                    <h:outputLabel for="codigoPresupuesto" value="Código Presupuesto" />
-                                    <h:selectOneMenu value = "#{userData.data}"> 
-                                        <f:selectItem itemValue = "1" itemLabel = "Aqui va los presupuesto" /> 
-                                        <f:selectItem itemValue = "2" itemLabel = "Item 2" /> 
+                                    <h:outputLabel for="codigoPresupuesto" value="Código Albaran" />
+                                    <h:selectOneMenu value = "#{userData.data}">
+                                        <f:selectItem itemValue = "1" itemLabel = "Aqui va el albaran" /> 
+                                        <f:selectItem itemValue = "2" itemLabel = "Item 2" />
                                         <f:ajax listener="#{bean.listener}" render="result"/>
                                     </h:selectOneMenu> 
 
@@ -115,7 +115,7 @@
                                 </h:selectOneMenu>
 
                                 <h:outputLabel for="cantidad" value="Cantidad:" />
-                                <p:inputText type="number"  id="cantidad" />
+                                <p:inputText type="number"  id="cantidad"/>
                                 
                                 <h:outputLabel for="descripcion" value="Descripción:" />
                                 <p:inputText id="descripcion" />
