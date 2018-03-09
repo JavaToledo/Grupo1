@@ -7,13 +7,15 @@ package bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 /**
  *
  * @author Alumno
  */
-@Named
+@Named(value="factura")
+@SessionScoped
 public class FacturaBean implements Serializable{
     
     String codFactura, observaciones;
