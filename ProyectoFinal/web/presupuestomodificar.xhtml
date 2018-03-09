@@ -67,7 +67,7 @@
 
                                 <h:panelGrid columns="4" cellpadding="5">
                                     <h:outputLabel for="busqueda" value="Valor a buscar:" />
-                                    <p:inputText id="busqueda" placeholder="Buscar por codigo de presupuesto;..." required="true"/>
+                                    <p:inputText id="busqueda" placeholder="Buscar por codigo o nombre de presupuesto;..." required="true"/>
                                     <h:outputLabel for="" value="" />
                                     <h:outputLabel for="" value="" />
 
@@ -75,13 +75,12 @@
                                     <p:inputText type="date" id="fechaInicio" />
                                     <h:outputLabel for="fechaFin" value="Fecha fin:" />
                                     <p:inputText type="date" id="fechaFin" />
-
+                                    
+                                   
 
                                 </h:panelGrid>
 
-                                <h:commandButton value="Buscar" id="buscar"  
-                                                 styleClass="ui-priority-primary"/>
-                                <f:ajax listener="#{BeanPresupuesto.presupuestoListener}" render="car"/>
+                                <h:commandButton value="Buscar" id="buscar"  actionListener="#{bean.buscar}" styleClass="ui-priority-primary"/>
 
                             </p:fieldset>
                         </h:form>
@@ -98,12 +97,12 @@
 
 
                                 <p:column headerText="Modificar">
-                                    <h:commandButton value="Modificar" id="modificar"  actionListener="#{BeanPresupuesto.modificar()}" styleClass="ui-priority-primary"/>
+                                    <h:commandButton value="Modificar" id="modificar"  actionListener="#{bean.modificar}" styleClass="ui-priority-primary"/>
                                 </p:column>
 
                                 <p:column headerText="Borrar">
                                    
-                                    <h:commandButton value="Borrar" id="borrar"  actionListener="#{BeanPresupuesto.borrar()}" styleClass="ui-priority-primary"/>
+                                    <h:commandButton value="Borrar" id="borrar"  actionListener="#{bean.borrar}" styleClass="ui-priority-primary"/>
                                 </p:column>
                             </p:dataTable>                    
 

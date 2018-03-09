@@ -1,12 +1,170 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <link href="estilos.css" rel="stylesheet"/>
+
+    <script src="script.js"></script>
+
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Java 2018 Presupuestos</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+
+
+                    <header class="header black-bg">
+                        <!--<h:graphicImage value="img/logo.png"  styleClass="logo2"/>-->
+                        <!--logo start-->
+                        <h:link outcome="welcomePrimefaces" value="Java AnPiCarAlEva 2018" ></h:link>
+                        <!--<ui:include src="usuario.xhtml"/>
+                       <h5  id="usuario"><%=usuario%></h5>-->
+                        <p:commandButton value="Salir" id="salir"  actionListener="#{usuario.salir}" styleClass="ui-priority-primary" />
+                    </header>
+                    <!--header end-->
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Java Toledo 2018 
+
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Ocultar" collapsible="true" style="background-color: grey; color: white;">
+                    <p:menu style="background-color: grey; color: white;">
+                        <p:submenu label="Opciones">
+                            <p:menuitem value="Cliente Nuevo" url="clientenuevo.xhtml"  class=""/>
+                            <p:menuitem value="Cliente Modificar" url="clientemodificar.xhtml"  class=""/>
+                            <p:menuitem value="Presupuesto Nuevo" url="presupuestonuevo.xhtml" />
+                            <p:menuitem value="Presupuesto Modificar" url="presupuestomodificar.xhtml" />
+                            <p:menuitem value="Factura Nueva" url="facturanueva.xhtml" />
+                            <p:menuitem value="Factura Modificar" url="facturamodificar.xhtml" />
+                            <p:menuitem value="Concepto Nuevo" url="conceptonuevo.xhtml" />
+                            <p:menuitem value="Concepto Modificar" url="conceptomodificar.xhtml" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" style="background-color: #F5DA81">                    
+
+                    <p:panel id="panelBusqueda" header="Presupuesto" style="margin-bottom:20px">
+
+
+                        <h:form>
+                            <p:fieldset legend="Nuevo Presupuesto" styleClass="legenda">
+
+                                <h:panelGrid columns="2" cellpadding="1">
+
+                                    <h:outputLabel for="clientealbaran" value="Cliente" />
+                                    <h:selectOneMenu value = "#{userData.data}"  required="true"> 
+                                        <f:selectItem itemValue = "1" itemLabel = "Aqui va los clientes" /> 
+                                        <f:selectItem itemValue = "2" itemLabel = "Item 2" /> 
+                                        <f:ajax listener="#{bean.listener}" render="result"/>
+                                    </h:selectOneMenu> 
+
+                                    <h:outputLabel for="concepto" value="Concepto:" />
+                                    <h:selectOneMenu value = "#{userData.data}"> 
+                                        <f:selectItem itemValue = "1" itemLabel = "Aqui va los conceptos" /> 
+                                        <f:selectItem itemValue = "2" itemLabel = "Item 2" /> 
+                                        <f:ajax listener="#{bean.listener}" render="result"/>
+                                    </h:selectOneMenu> 
+
+                                    <h:outputLabel for="coodigoPresupuesto" value="Código Presupuesto:" />
+                                    <p:inputText id="codigopresupuesto"/>
+
+                                    <h:outputLabel for="fechaAlbaran" value="Fecha Presupuesto:" />
+                                    <p:inputText type="date" id="fechaAlbaran" />
+
+                                    <h:outputLabel for="estado" value="Estado:" />
+                                    <h:selectOneRadio value="#{user.favColor1}">
+                                        <f:selectItem itemValue="activado" itemLabel="Activado" />
+                                        <f:selectItem itemValue="desactivado" itemLabel="Desactivado" />
+                                    </h:selectOneRadio>
+                                    <h:outputLabel for="" value="" />
+                                    <h:outputLabel for="" value="" />
+
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="6" id="recuadroconceptos">
+                                <h:outputLabel for="Concepto" value="Concepto:" />
+                                <h:selectOneMenu value = "#{userData.data}"> 
+                                    <f:selectItem itemValue = "1" itemLabel = "Aqui va los clientes" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "Item 2" /> 
+                                    <f:ajax listener="#{bean.listener}" render="result"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel for="cantidad" value="Cantidad:" />
+                                <p:inputText type="number"  id="cantidad" />
+                                
+                                <h:outputLabel for="descripcion" value="Descripción:" />
+                                <p:inputText id="descripcion" />
+                                
+                                <h:outputLabel for="iva" value="Iva" />
+                                <p:inputText id="iva" />
+                                
+                                <h:outputLabel for="descuento" value="Descuento:" />
+                                <p:inputText type="number"  id="descuento" />
+                                
+                                <h:outputLabel for="importe" value="Importe:" />
+                                <p:inputText type="number" id="importe" value="importe"/>
+
+                                <h:commandButton value="Añadir" id="anadir"  actionListener="#{bean.anadir}" styleClass="ui-priority-primary">
+                                    <f:ajax listener="#{bean.listener}" render="result"/>
+                        </h:commandButton>
+                                </h:panelGrid >
+                                <br/>
+                                <h:panelGrid>
+                                <p:dataTable var="con" value="#{dtBasicView.cars}">
+                                    <p:column headerText="Concepto" styleClass="tablaConcepto" style="">
+                                        <h:outputText value="#{car.id}" />
+                                    </p:column>
+                                    <p:column headerText="Cantidad" styleClass="tablaConcepto" style="">
+                                        <h:outputText value="#{car.id}" />
+                                    </p:column>
+                                    <p:column headerText="Descripción" styleClass="tablaConcepto" style="">
+                                        <h:outputText value="#{car.id}" />
+                                    </p:column>
+                                    <p:column headerText="Iva" styleClass="tablaConcepto" style="">
+                                        <h:outputText value="#{car.id}" />
+                                    </p:column>
+                                    <p:column headerText="Descuento" styleClass="tablaConcepto" style="">
+                                        <h:outputText value="#{car.id}" />
+                                    </p:column>
+                                    <p:column headerText="Importe" styleClass="tablaConcepto" style="">
+                                        <h:outputText value="#{car.id}" />
+                                    </p:column>
+
+                                </p:dataTable>
+                                </h:panelGrid>
+                                <h:panelGrid id="botones" columns="2" cellpadding="3">
+                                <h:commandButton value="Grabar" id="grabar"  actionListener="#{bean.grabar}" styleClass="ui-priority-primary"/>
+                                <h:commandButton value="Imprimir" id="imprimir"  actionListener="#{bean.imprimir}" styleClass="ui-priority-primary"/>
+                                </h:panelGrid>
+                            </p:fieldset>
+                        </h:form>
+
+                    </p:panel>
+
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
 </html>
 
